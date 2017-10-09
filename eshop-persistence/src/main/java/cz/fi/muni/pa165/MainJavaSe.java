@@ -11,6 +11,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import cz.fi.muni.pa165.entity.Category;
 import cz.fi.muni.pa165.entity.Product;
+import cz.fi.muni.pa165.enums.Color;
+import java.util.Calendar;
+import javax.persistence.PersistenceException;
 
 public class MainJavaSe {
 	private static EntityManagerFactory emf;
@@ -23,9 +26,9 @@ public class MainJavaSe {
 		try {
 			// BEGIN YOUR CODE
 			//task04(); //hotovo 
-                        task05();
-                        //task06();
-                        //task08();
+                        //task05(); //hotovo
+                        //task06(); //hotovo
+                        task08();
 			// END YOUR CODE
 		} finally {
 			emf.close();
@@ -119,7 +122,19 @@ public class MainJavaSe {
 		// Additional task: Change the underlying table of Product entity to be ESHOP_PRODUCTS. After you do this, check this by inspecting console output (the CREATE TABLE statement)
 		//
 		// To test your code uncomment the commented code at the end of this method.
-
+                EntityManager em_task06 = emf.createEntityManager();
+		em_task06.getTransaction().begin();
+                
+                Product p1 = new Product();
+                p1.setName("Guitar");
+                p1.setColor(Color.BLACK);
+                Calendar c1 = Calendar.getInstance();
+                c1.set(2011, 0, 20, 0, 0, 0);
+                p1.setAddedDate(c1.getTime());
+                
+                em_task06.persist(p1);
+                
+                em_task06.getTransaction().commit();
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -128,7 +143,7 @@ public class MainJavaSe {
 		em.getTransaction().commit();
 		em.close();
 
-	/** TODO Uncomment the following test code after you are finished!
+	///** TODO Uncomment the following test code after you are finished!
 	 
 		assertEq(p.getName(), "Guitar");
 		Calendar cal = Calendar.getInstance();
@@ -162,7 +177,7 @@ public class MainJavaSe {
 	
 
 		System.out.println("Task6 ok!");
-		*/
+		//*/
 	}
 	
 	private static void task08() {
@@ -174,7 +189,7 @@ public class MainJavaSe {
 		//TODO after you implement equals nad hashCode, you can uncomment the code below. It will try
 		// to check whether you are doing everything correctly. 
 	
-/* TODO uncomment the following (it should work if you were successfull with task08)
+///* TODO uncomment the following (it should work if you were successfull with task08)
 
 
 		class MockProduct extends Product {
@@ -212,7 +227,7 @@ public class MainJavaSe {
 		if (mp.getNameCalled){
 			System.out.println("CORRECT");
 		} else System.out.println("INCORRECT!");
-		 */
+		// */
 	
 	}
 
