@@ -22,7 +22,10 @@ public class MainJavaSe {
 		emf = Persistence.createEntityManagerFactory("default");
 		try {
 			// BEGIN YOUR CODE
-			task04();
+			//task04(); //hotovo 
+                        task05();
+                        //task06();
+                        //task08();
 			// END YOUR CODE
 		} finally {
 			emf.close();
@@ -37,6 +40,19 @@ public class MainJavaSe {
 		// Then you have to start transaction using getTransaction().begin()
 		// Then use persist() to persist both of the categories and finally commit the transaction
 
+                EntityManager em_task04 = emf.createEntityManager();
+		em_task04.getTransaction().begin();
+                
+                Category c1 = new Category();
+                c1.setName("Electronics");
+                em_task04.persist(c1);
+                
+                Category c2 = new Category();
+                c2.setName("Musical");
+                em_task04.persist(c2);
+                
+                em_task04.getTransaction().commit();
+                
 		// The code below is just testing code. Do not modify it
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -69,6 +85,15 @@ public class MainJavaSe {
 		// the detached category
 		// into the context and change the name to "Electro"
 
+                EntityManager em_task05 = emf.createEntityManager();
+		em_task05.getTransaction().begin();
+                
+                em_task05.detach(category);
+                category = em_task05.merge(category);
+                category.setName("Electro");
+                em_task05.persist(category);
+                
+                em_task05.getTransaction().commit();
 
 		// The code below is just testing code. Do not modify it
 		EntityManager checkingEm = emf.createEntityManager();
