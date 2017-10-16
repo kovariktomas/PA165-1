@@ -86,7 +86,7 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		Assert.fail("Couldn't find product "+ expectedProductName+ " in collection "+products);
 	}
         
-        @Test
+    @Test
 	public void category1Test() {
 		
                 EntityManager em_task01 = emf.createEntityManager();
@@ -100,7 +100,7 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 	}
         
         
-        @Test
+    @Test
 	public void category2Test() {
 		
                 EntityManager em_task01 = emf.createEntityManager();
@@ -115,7 +115,7 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 	}
         
         
-        @Test
+    @Test
 	public void product1Test() {
 		
                 EntityManager em_task01 = emf.createEntityManager();
@@ -129,7 +129,7 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		em_task01.close();
 	}
         
-         @Test
+    @Test
 	public void product2Test() {
 		
                 EntityManager em_task01 = emf.createEntityManager();
@@ -143,7 +143,7 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		em_task01.close();
 	}
         
-         @Test
+    @Test
 	public void product3Test() {
 		
                 EntityManager em_task01 = emf.createEntityManager();
@@ -157,5 +157,15 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		em_task01.close();
 	}
 
+	@Test(expectedExceptions=ConstraintViolationException.class)
+	public void testDoesntSaveNullName(){
+		EntityManager em1 = emf.createEntityManager();
+		em1.getTransaction().begin();       
+        product1 = new Product();
+        em1.persist(product1);
+		em1.getTransaction().commit();
+		em1.close();
+                
+	}
 	
 }
