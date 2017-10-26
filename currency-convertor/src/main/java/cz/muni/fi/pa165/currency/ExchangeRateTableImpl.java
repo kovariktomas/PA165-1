@@ -25,8 +25,8 @@ public class ExchangeRateTableImpl implements ExchangeRateTable {
         if (targetCurrency == null) {
             throw new IllegalArgumentException("targetCurrency is null");
         }
-       
-        if(sourceCurrency.getCurrencyCode()=="EUR"&&targetCurrency.getCurrencyCode()=="CZK")
+
+        if(sourceCurrency.getCurrencyCode().equals("EUR")&&targetCurrency.getCurrencyCode().equals("CZK"))
             return new BigDecimal(27);
         else {
             return null;// throw new ExternalServiceFailureException("");

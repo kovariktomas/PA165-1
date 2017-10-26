@@ -11,6 +11,6 @@
     
     </bean> 
     <bean id="CurrencyConvertor" class="cz.muni.fi.pa165.currency.CurrencyConvertorImpl">
-        
+        <constructor-arg ref="ExchangeRateTable"/> 
     </bean> 
 </beans>
