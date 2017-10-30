@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.currency;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 
 /**
@@ -12,9 +14,11 @@ import java.util.Currency;
  */
 public class CurrencyConvertorImpl implements CurrencyConvertor {
 
+    
     private final ExchangeRateTable exchangeRateTable;
     //private final Logger logger = LoggerFactory.getLogger(CurrencyConvertorImpl.class);
 
+    @Inject @Named("CurrencyConvertor")
     public CurrencyConvertorImpl(ExchangeRateTable exchangeRateTable) {
         this.exchangeRateTable = exchangeRateTable;
     }
