@@ -12,6 +12,7 @@ import javax.inject.Named;
  *
  * @author petr.adamek@embedit.cz
  */
+@Named
 public class CurrencyConvertorImpl implements CurrencyConvertor {
 
     
@@ -21,6 +22,10 @@ public class CurrencyConvertorImpl implements CurrencyConvertor {
     @Inject @Named("CurrencyConvertor")
     public CurrencyConvertorImpl(ExchangeRateTable exchangeRateTable) {
         this.exchangeRateTable = exchangeRateTable;
+    }
+
+    public CurrencyConvertorImpl() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
